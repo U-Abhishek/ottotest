@@ -4,14 +4,29 @@ import { GoogleGenerativeAI } from "@google/generative-ai"
 // Configure runtime for Vercel
 export const runtime = "nodejs"
 export const maxDuration = 60 // 60 seconds max for Vercel Pro, 10s for Hobby
+export const dynamic = "force-dynamic" // Ensure route is not statically generated
+export const fetchCache = "force-no-store" // Disable caching
 
 // GET handler for health check
-export async function GET() {
-  return NextResponse.json({ 
-    status: "ok", 
-    message: "Workflow generation API is running",
-    hasApiKey: !!process.env.GEMINI_API_KEY 
-  })
+export async function GET(request: NextRequest) {
+  try {
+    return NextResponse.json({ 
+      status: "ok", 
+      message: "Workflow generation API is running",
+      hasApiKey: !!process.env.GEMINI_API_KEY,
+      path: request.url,
+      timestamp: new Date().toISOString()
+    })
+  } catch (error: any) {
+    return NextResponse.json(
+      { 
+        error: "GET handler error", 
+        details: String(error),
+        path: request.url 
+      },
+      { status: 500 }
+    )
+  }
 }
 
 export async function POST(request: NextRequest) {
