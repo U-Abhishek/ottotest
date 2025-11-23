@@ -3,7 +3,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai"
 
 // Configure runtime for Vercel
 export const runtime = "nodejs"
-export const maxDuration = 60 // 60 seconds max for Vercel Pro, 10s for Hobby
+export const maxDuration = 10 // 10 seconds for Hobby plan, can increase to 60 for Pro
 export const dynamic = "force-dynamic" // Ensure route is not statically generated
 export const fetchCache = "force-no-store" // Disable caching
 
