@@ -1,24 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OttoTest
+
+OttoTest is a web application that helps hardware testers generate test workflows using LLMs (Gemini API). Create, visualize, and edit hardware test procedures with an intuitive flowchart interface.
+
+## Features
+
+- 🤖 **AI-Powered Workflow Generation**: Use Gemini API to generate test workflows from natural language descriptions
+- 📊 **Visual Flowchart Editor**: Edit and visualize workflows as interactive flowcharts with drag-and-drop
+- 📄 **Document Support**: Upload technical documents to provide context for better workflow generation
+- ✏️ **Interactive Editing**: Click on workflow steps to edit their details
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+ 
+- pnpm (or npm/yarn)
+
+### Installation
+
+1. Install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Set up your Gemini API key:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a `.env.local` file in the root directory:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+GEMINI_API_KEY=your_gemini_api_key_here
+```
+
+Get your API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+
+3. Run the development server:
+
+```bash
+pnpm dev
+```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Usage
+
+1. **Create Workflow**: Click "Create Workflow" on the home page
+2. **Upload Document** (optional): Upload a technical document to provide context
+3. **Describe Workflow**: Enter a description of your hardware test requirements
+4. **Generate**: Click "Generate Workflow" to create the workflow using AI
+5. **Edit Flowchart**: In the editor, click on nodes to edit, drag to reposition, and connect nodes to create the flow
+
+## Tech Stack
+
+- **Next.js 16** - React framework
+- **React Flow** - Flowchart visualization
+- **shadcn/ui** - UI components
+- **Tailwind CSS** - Styling
+- **Google Gemini API** - AI workflow generation
 
 ## Learn More
 
