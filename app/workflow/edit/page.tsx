@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import {
   ReactFlow,
@@ -25,7 +25,7 @@ import { Textarea } from "@/components/ui/textarea"
 const initialNodes: Node[] = []
 const initialEdges: Edge[] = []
 
-export default function EditWorkflowPage() {
+function EditWorkflowContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
@@ -237,6 +237,18 @@ export default function EditWorkflowPage() {
         )}
       </div>
     </div>
+  )
+}
+
+export default function EditWorkflowPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-muted-foreground">Loading workflow editor...</div>
+      </div>
+    }>
+      <EditWorkflowContent />
+    </Suspense>
   )
 }
 
