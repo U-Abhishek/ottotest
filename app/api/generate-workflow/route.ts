@@ -1,6 +1,19 @@
 import { NextRequest, NextResponse } from "next/server"
 import { GoogleGenerativeAI } from "@google/generative-ai"
 
+// Configure runtime for Vercel
+export const runtime = "nodejs"
+export const maxDuration = 60 // 60 seconds max for Vercel Pro, 10s for Hobby
+
+// GET handler for health check
+export async function GET() {
+  return NextResponse.json({ 
+    status: "ok", 
+    message: "Workflow generation API is running",
+    hasApiKey: !!process.env.GEMINI_API_KEY 
+  })
+}
+
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData()
